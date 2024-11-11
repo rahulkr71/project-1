@@ -1,0 +1,166 @@
+
+<WindowManager>:
+    WelcomeScreen:
+    UsernameScreen:
+
+<WelcomeScreen>:
+    name: 'welcomescreen'
+    Image:
+        source: 'Img09.png'
+        size_hint: None, None
+        width: '360dp'
+        height: '640dp'
+        pos_hint: {'center_x':0.5, 'center_y':0.5}
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint_y:1.5
+
+            MDLabel:
+                text: 'Hello Student'
+                font_style: 'H2'
+                halign: 'center'
+                size_hint_x:1.5
+                font_size: 30
+                color: (1,0,0,1)
+                canvas.before:
+                    Color:
+                        rgba: 135/255,206/255,235/255,1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20]
+            
+            MDLabel:
+                size_hint_x:0.5
+
+        MDLabel:
+            text: 'Learning Never Stops!'
+            font_style: 'H2'
+            font_size: 25
+            halign: 'right'
+            size_hint_y:1
+        
+        Image:
+            size_hint_y:4
+            source: 'Img03.png'
+        
+        MDFloatingActionButton:
+            icon: 'arrow-right'
+            md_bg_color: (0,1,0,1)
+            pos_hint: {'center_x':0.5}
+            size_hint_y:1
+            on_press:
+                root.manager.current = 'usernamescreen'
+                root.manager.transition.direction = 'left'
+        
+        MDLabel:
+            size_hint_y: 0.9
+        
+        MDProgressBar:
+            value: 30
+            size_hint_y:0.1
+            
+<UsernameScreen>:
+    name: 'usernamescreen'
+    
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: 5
+        padding: 10
+
+        MDLabel:
+            size_hint_y: 2
+
+        MDTextField:
+            id: username_text_field
+            pos_hint: {'center_x':0.5, 'center_y':0.7}
+            size_hint_x: 0.8
+            icon_right: 'account'
+            multiline: False
+
+        MDTextField:
+            id: passwd_textfield
+            icon_right: 'eye-off'
+            password: True
+            password_mask: '*'
+            size_hint_x: 0.8
+            pos_hint: {'center_x':0.5, 'center_y':0.6}
+            multiline: False
+    
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint_x: 0.8
+            size_hint_y: 1
+            pos_hint: {'center_x':0.5, 'center_y':0.5}
+
+            MDCheckbox:
+                size_hint: None, None
+                width: '30dp'
+                height: '30dp'
+                pos_hint: {'center_x':0.2, 'center_y':0.5}
+
+            MDLabel:
+                text: 'show password'
+    
+        MDFlatButton:
+            text: 'Sign In'
+            font_size: 15
+            size_hint_x: 0.8
+            size_hint_y: 0.8
+            pos_hint: {'center_x':0.5}
+            canvas.before:
+                Color:
+                    rgba: 0,0,1,1
+                RoundedRectangle:
+                    pos:self.pos
+                    size: self.size
+                    radius: [20]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 5
+            size_hint_x: 0.8
+            size_hint_y: 0.8
+            pos_hint: {'center_x':0.5}
+
+            MDFlatButton:
+                text: 'Forgot Password'
+                size_hint_x: 0.4
+                canvas.before:
+                    Color:
+                        rgba: 0,0,1,1
+                    Line:
+                        width: 1
+                        rectangle:self.x, self.y, self.width, self.height
+
+            MDFlatButton:
+                text: 'Register Now'
+                size_hint_x: 0.4
+                canvas.before:
+                    Color:
+                        rgba: 0,0,1,1
+                    Line:
+                        width: 1
+                        rectangle:self.x, self.y, self.width, self.height
+
+        MDFloatingActionButton:
+            icon: 'arrow-left'
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {'center_x':0.5, 'center_y':0.2}
+            use_font_size: '45sp'
+            on_press:
+                root.manager.current = 'welcomescreen'
+                root.manager.transition.direction = 'right'
+
+        MDBoxLayout:
+            size_hint_y: 0.5
+            MDProgressBar:
+                value: 60
+                size_hint_y:0.1               
